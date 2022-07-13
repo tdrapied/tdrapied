@@ -4,4 +4,4 @@
 
 <br/>
 
-<img height="350" src="blob.gif">
+<img height="300" src="blob.gif">
