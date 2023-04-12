@@ -1,0 +1,49 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: "0 3 * * 1" # every Monday at 3am
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.MY_TOKEN }}
+
+      - name: Create .env
+        run: |
+          touch .env
+          echo "STRAVA_USER_ID=${{ secrets.STRAVA_USER_ID }}" >> .env
+          echo "STRAVA_CLIENT_ID=${{ secrets.STRAVA_CLIENT_ID }}" >> .env
+          echo "STRAVA_CLIENT_SECRET=${{ secrets.STRAVA_CLIENT_SECRET }}" >> .env
+          echo "STRAVA_REFRESH_TOKEN=${{ secrets.STRAVA_REFRESH_TOKEN }}" >> .env
+          echo "BIRTHDAY=${{ secrets.BIRTHDAY }}" >> .env
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+        env:
+          TEST2: "test2"
+          STRAVA_USER_ID: ${{ secrets.STRAVA_USER_ID }}
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+          BIRTHDAY: ${{ secrets.BIRTHDAY }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - run: npm run build
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: Update README.md
+          new_branch: master
+          default_author: github_actions

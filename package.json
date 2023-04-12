@@ -1,0 +1,12 @@
+{
+  "name": "tdrapied",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ."
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "mustache": "^4.2.0"
+  }
+}
