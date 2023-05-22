@@ -16,8 +16,8 @@
   ],
   "activities": {
     "cycling": {
-      "activities": 15
-      "distance": 547.8
+      "activities": 18
+      "distance": 720.1
     }
   }
 }
