@@ -1,7 +1,7 @@
 ```json
 {
   "name": "tdrapied",
-  "version": "22y",
+  "version": "23y",
   "descripton": "js fullstack dev",
   "main": "itroom.js",
   "script": {
@@ -15,8 +15,8 @@
   ],
   "activities": {
     "cycling": {
-      "activities": 110
-      "distance": 2767.9
+      "activities": 116
+      "distance": 2839
     }
   }
 }
